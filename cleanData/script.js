@@ -17,5 +17,17 @@ function cleanData(oldList) {
     .map(item => item
       .toLowerCase()
     )
+    .map(item => {
+      item.split(";")
+      return item.replace(",", ";")
+    })
+    .map(item => {
+      item.split(";")
+      return item.replace(",", ";")
+    })
+    .map(item => {
+      item.split("+")
+      return item.replace('+', '; ')
+    })
   console.log(newList);
 }
