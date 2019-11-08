@@ -6,12 +6,16 @@ fetch('data.json')
   .then(json => getData(json));
 
 // data = alle data uit enquette
+// .map maakt een nieuwe array en zoekt naar items uit de ontbijtlijst
 const getData = data => {
   const oldList = data
     .map(item => item["Wat eet je als ontbijt?"]);
   cleanData(oldList);
 }
 
+// Pak data uit de ontbijtlijst (oldList)
+// split: zoek naar karakters , +
+// join: vervang deze karakters met ;
 const cleanData = oldList => {
   const newList = oldList
     .map(item =>
@@ -20,6 +24,5 @@ const cleanData = oldList => {
       .split(/[,+]/)
       .join(";")
     )
-
   console.log(newList);
 }
