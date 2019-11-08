@@ -14,20 +14,11 @@ function getData(data) {
 
 function cleanData(oldList) {
   const newList = oldList
-    .map(item => item
+    .map(item =>
+      item
       .toLowerCase()
+      .split(",")
+      .join(";")
     )
-    .map(item => {
-      item.split(";")
-      return item.replace(",", ";")
-    })
-    .map(item => {
-      item.split(";")
-      return item.replace(",", ";")
-    })
-    .map(item => {
-      item.split("+")
-      return item.replace('+', '; ')
-    })
   console.log(newList);
 }
