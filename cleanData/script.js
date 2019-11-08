@@ -10,19 +10,21 @@ fetch('data.json')
 const getData = data => {
   const oldList = data
     .map(item => item["Wat eet je als ontbijt?"]);
-  cleanData(oldList);
+  replaceCharacters(oldList);
 }
 
 // Pak data uit de ontbijtlijst (oldList)
 // split: zoek naar karakters , +
 // join: vervang deze karakters met ;
-const cleanData = oldList => {
+const replaceCharacters = oldList => {
   const newList = oldList
     .map(item =>
       item
       .toLowerCase()
-      .split(/[,+]/)
+      .split(/[,+&]/)
       .join(";")
     )
   console.log(newList);
 }
+
+//TODO null waardes
