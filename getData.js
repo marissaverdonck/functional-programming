@@ -9,8 +9,9 @@ fetch('oceanie.json')
 function getData(json) {
   // json = alle data in oceanie
   // met .map maak je een object{} aan van oceanie. Hierin geef je keys mee (lat, long, imageLink)
-  // map werkt alleen op een array
-  const oceanie = json.results.bindings
+  // {} geeft aan dat je een object wil maken, als je een array zou willen gebruik []}
+  // arrow function die location meekrijgt in de parameter function(location){} bij een arrow gebruik je geen {}
+  let oceanie = json.results.bindings
     .map(location => {
       return {
         lat: location.lat.value,
@@ -19,4 +20,5 @@ function getData(json) {
       }
     })
   console.log(oceanie)
+  return oceanie
 }
