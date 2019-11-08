@@ -6,13 +6,13 @@ fetch('data.json')
   .then(json => getData(json));
 
 // data = alle data uit enquette
-function getData(data) {
+const getData = data => {
   const oldList = data
     .map(item => item["Wat eet je als ontbijt?"]);
   cleanData(oldList);
 }
 
-function cleanData(oldList) {
+const cleanData = oldList => {
   const newList = oldList
     .map(item =>
       item
