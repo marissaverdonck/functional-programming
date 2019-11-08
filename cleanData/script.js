@@ -20,5 +20,10 @@ function cleanData(oldList) {
       .split(",")
       .join(";")
     )
+    .map(item =>
+      item
+      .split("+")
+      .join(";")
+    )
   console.log(newList);
 }
