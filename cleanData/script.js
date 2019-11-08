@@ -17,13 +17,9 @@ const cleanData = oldList => {
     .map(item =>
       item
       .toLowerCase()
-      .split(",")
+      .split(/[,+]/)
       .join(";")
     )
-    .map(item =>
-      item
-      .split("+")
-      .join(";")
-    )
+
   console.log(newList);
 }
