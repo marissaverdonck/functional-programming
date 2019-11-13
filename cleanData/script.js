@@ -28,3 +28,4 @@ const replaceCharacters = oldList => {
 }
 
 //TODO null waardes
+//TODE parse csv json
