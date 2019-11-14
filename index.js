@@ -1,32 +1,4 @@
-// // selecteer het svg element
-// const svg = d3.select('svg');
-// var arc = d3.arc();
-
-// // svg.attr pakt de value uit de html.
-// // + is parseFloat oftwel het veranderd het type van string naar number
-// const height = +(svg.attr('height'));
-// const width = +(svg.attr('width'));
-
-// // new DOM element aanmaken. creeern circle element
-// const circle = svg.append('circle')
-//   // door geen ; te grbuiken, kan .attr direct erachteraan geschreven worden
-//   // eerste argument is de key, 2e value
-//   .attr('r', height / 2)
-//   .attr('cx', width / 2)
-//   .attr('cy', height / 2);
-
-// // zoek D3 API's voor speciale vormen
-// var mouth = svg.append('path')
-//   .attr('d', arc({
-//     innerRadius: 150,
-//     outerRadius: 170,
-//     startAngle: Math.PI / 2,
-//     endAngle: Math.PI * 3 / 2
-//     .transition().duration(2000)
-//   }))
-
-
-
+// SPARQL Sieraden
 const query = `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
 PREFIX dct: <http://purl.org/dc/terms/>
@@ -41,8 +13,6 @@ PREFIX gn: <http://www.geonames.org/ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT (SAMPLE(?cho) AS ?choSample) ?place ?placeName ?type ?imageLink ?lat ?long WHERE {
-    <https://hdl.handle.net/20.500.11840/termmaster6813> skos:narrower* ?place .
-    ?place skos:prefLabel ?placeName .
     <https://hdl.handle.net/20.500.11840/termmaster13201> skos:narrower* ?type .
     ?type skos:prefLabel ?typeName .
     ?cho dct:spatial ?place ;
@@ -54,13 +24,9 @@ SELECT (SAMPLE(?cho) AS ?choSample) ?place ?placeName ?type ?imageLink ?lat ?lon
 GROUP BY ?place ?placeName ?type ?imageLink ?lat ?long
 `
 
-//Please use your own endpoint when using this 
 const endpoint = "https://api.data.netwerkdigitaalerfgoed.nl/datasets/ivo/NMVW/services/NMVW-28/sparql";
-const circleDelay = 5
+const circleDelay = 2
 const circleSize = 3
-
-
-
 
 // Bron: https://www.youtube.com/watch?v=Qw6uAg3EO64
 // Mapprojections: https://github.com/d3/d3-geo-projection
@@ -72,6 +38,9 @@ const feature = topojson.feature;
 const geoPath = d3.geoPath;
 // geoEquirectangular is een projectie
 const geoEquirectangular = d3.geoEquirectangular;
+const projection = geoEquirectangular();
+// zet de svg-string om naar de projectie
+const pathGenerator = geoPath().projection(projection);
 // svg centreren. Bron: https://bl.ocks.org/mbostock/4136647
 const height = 500;
 const width = 800;
@@ -80,9 +49,6 @@ const svg = d3.select('svg')
   .attr("width", width)
   .attr("height", height);
 
-const projection = geoEquirectangular();
-// zet de svg-string om naar de projectie
-const pathGenerator = geoPath().projection(projection);
 
 //function setupMap(){}
 svg
