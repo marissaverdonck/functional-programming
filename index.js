@@ -47,6 +47,7 @@ const projection = geoNaturalEarth1();
 // zet de svg-string om naar de projectie
 const pathGenerator = geoPath().projection(projection);
 
+
 svg
   .append('path')
   .attr('class', 'sphere')

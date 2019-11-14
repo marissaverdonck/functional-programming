@@ -1,6 +1,7 @@
 body {
   margin: 0em;
   overflow: hidden;
+  background-color: #cfe5e3;
 }
 
 .sphere {
@@ -14,7 +15,45 @@ body {
 }
 
 svg {
-  height: 100%;
-  width: 100%;
-  float: left;
+  margin: 2em auto;
+  background-color: #cfe5e3;
+  display: block;
+  text-align: center;
+}
+
+h1 {
+  font-family: Montserrat;
+  font-size: 1.2em;
+  color: #ffffff;
+  text-transform: uppercase;
+  background-color: #ea4e55;
+  padding: 1em;
+  margin: .5em;
+  display: inline-block;
+}
+
+#buttons a button {
+  font-family: Montserrat;
+  background-color: #ffffff;
+  /* Green */
+  border: none;
+  color: #ea4e55;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0em .5em 0em .5em;
+}
+
+#buttons {
+  display: block;
+  justify-content: center;
+  text-align: center;
+}
+
+#buttons a button.select {
+  background-color: #ea4e55;
+  color: #ffffff;
 }
