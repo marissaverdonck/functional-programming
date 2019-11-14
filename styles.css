@@ -57,3 +57,8 @@ h1 {
   background-color: #ea4e55;
   color: #ffffff;
 }
+
+circle {
+  fill: #ea4e55;
+  opacity: .2;
+}
