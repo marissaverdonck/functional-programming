@@ -4,11 +4,17 @@ body {
 }
 
 .sphere {
-  background-color: aqua;
+  fill: #cfe5e3;
 }
 
 .country {
-  fill: green;
-  stroke: black;
+  fill: #ffffff;
+  stroke: #cfe5e3;
   stroke-opacity: 0.4;
+}
+
+svg {
+  height: 100%;
+  width: 100%;
+  float: left;
 }

@@ -28,30 +28,29 @@
 // Bron: https://www.youtube.com/watch?v=Qw6uAg3EO64
 // Mapprojections: https://github.com/d3/d3-geo-projection
 
-// Omdat npm d3 geinstaleerd is kan hier alles uit gehaald worden.
-// ipv import
+// Omdat npm d3 geinstaleerd is kan hier alles uit gehaald worden ipv import
 const json = d3.json;
 const feature = topojson.feature;
 // geoPath zet data om naar een svg-string
 const geoPath = d3.geoPath;
 // geoNaturalEarth1 is een projectie
 const geoNaturalEarth1 = d3.geoNaturalEarth1;
-const svg = d3.select('svg');
+// svg centreren. Bron: https://bl.ocks.org/mbostock/4136647
+const height = 500;
+const width = 800;
+const svg = d3.select('svg')
+  .attr("viewBox", "90 0 " + width + " " + height)
+  .attr("width", width)
+  .attr("height", height);
 
-const height = +(svg.attr('height'));
-const width = +(svg.attr('width'));
 const projection = geoNaturalEarth1();
 // zet de svg-string om naar de projectie
 const pathGenerator = geoPath().projection(projection);
-
-
 
 svg
   .append('path')
   .attr('class', 'sphere')
   .attr('d', pathGenerator({ type: 'Sphere' }));
-
-
 
 // Laad de kaart uit de url in json
 // Haal daarna de data op
