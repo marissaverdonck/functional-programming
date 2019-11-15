@@ -45,7 +45,7 @@ const height = 500;
 const width = 800;
 const svg = d3.select('svg')
   .attr("viewBox", "90 0 " + width + " " + height)
-const circleDelay = 2
+const circleDelay = 1
 const circleSize = 3
 
 // Voer de functies in deze volgorde uit
@@ -85,37 +85,46 @@ function drawMap() {
 }
 
 function plotLocations() {
+  // Fetch geeft toegang tot het json file
   // Pak het endpoint en de query van de data uit SPARQL
+  // encodeURI() encodes the Uniform Resource Identifier (URI) 
   fetch(endpoint + "?query=" + encodeURIComponent(query) + "&format=json")
     .then(data => data.json())
     .then(json => json.results.bindings)
     .then(results => {
-      // convertYear(jsonResults);
-      //TODO: clean up results in separate function
+      // forEachvoert de meegegeven functie 1 keer uit voor elk array element
       results.forEach(result => {
         result.lat = Number(result.lat.value)
         result.long = Number(result.long.value)
-
       })
       console.log(results)
+
       svg
+      // dataJoin opzetten (data en html connecten)
+      // Er zijn data-elementen maar geen html-elementen. Daarom selecteer je alles
         .selectAll('circle')
+        // Geef met .data(data) een array met data aan
         .data(results)
         .enter()
         .append('circle')
+        // Geef voor elk path een class country mee
         .attr('class', 'circles')
+        // Bepaal de plaats van de circle op de kaart met cx en cy. 
+        // Het d-attribuut defineerd het pad wat getekend gaat worden
         .attr('cx', function(d) {
           return projection([d.long, d.lat])[0]
         })
         .attr('cy', function(d) {
           return projection([d.long, d.lat])[1]
         })
-        .attr('r', 'px')
-        //Opacity is quite heavy on the rendering process so I've turned it off	
-        //.attr('opacity', .5)
-        .transition()
+        // r geeft de grootte aan van de circles
+        .attr('r', '0px')
+
+      // Animeer de data met transition
+      .transition()
+        // voor elk element overgangsvertraging instellen. d=datum, i=index.
         .delay(function(d, i) { return i * circleDelay; })
-        .duration(1500)
+        .duration(500)
         .ease(d3.easeBounce)
         .attr('r', circleSize + 'px')
     })
