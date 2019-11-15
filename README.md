@@ -56,7 +56,7 @@ Data wordt opgehaald uit de [collectie wereldculturen](https://collectie.wereldc
 ## License
 [MIT License](https://github.com/marissaverdonck/functional-programming/blob/master/license)
 
-## 
+## *Extra opdracht
 [Data opschonen *extra opdracht](https://github.com/marissaverdonck/functional-programming/wiki/Week-1/_edit#extra-opdracht-data-opschonen)
 
 
