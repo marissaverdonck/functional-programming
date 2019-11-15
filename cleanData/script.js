@@ -17,15 +17,36 @@ const getData = data => {
 // split: zoek naar karakters , +
 // join: vervang deze karakters met ;
 const replaceCharacters = oldList => {
-  const newList = oldList
+  const clearList1 = oldList
+    // .map maakt een nieuwe array van de items
     .map(item =>
       item
       .toLowerCase()
       .split(/[,+&]/)
       .join(";")
     )
-  console.log(newList);
+  console.log(clearList1);
+  check(clearList1)
 }
+
+function check(clearList1) {
+  const clearList2 = clearList1
+    .map(item => item == "" ? item = null : item)
+  console.log(clearList2)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //TODO null waardes
 //TODE parse csv json

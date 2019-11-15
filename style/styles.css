@@ -19,6 +19,8 @@ svg {
   background-color: #cfe5e3;
   display: block;
   text-align: center;
+  max-width: 50em;
+  ;
 }
 
 h1 {
@@ -40,7 +42,7 @@ h1 {
   color: #ea4e55;
   font-weight: bold;
   font-size: 1em;
-  padding: 1em;
+  padding: .8em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
