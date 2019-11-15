@@ -34,9 +34,15 @@ Data wordt opgehaald uit de [collectie wereldculturen](https://collectie.wereldc
 
 <img width="571" alt="Schermafbeelding 2019-11-15 om 07 17 12" src="https://user-images.githubusercontent.com/43657951/68921170-1a7b9c80-0778-11ea-899a-43db49ca3bb0.png">
 
+###
+<img width="571" alt="Schermafbeelding 2019-11-15 om 07 24 32" src="https://user-images.githubusercontent.com/43657951/68921425-ff5d5c80-0778-11ea-8364-049b1997a8a2.png">
+
 ## Tools
+
 • NPM
+
 • D3
+
 • SPARQL
 
 ## License
