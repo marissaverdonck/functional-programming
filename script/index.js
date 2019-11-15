@@ -41,10 +41,10 @@ const projection = geoEquirectangular();
 // zet de svg-string om naar de projectie
 const pathGenerator = geoPath().projection(projection);
 // svg centreren. Bron: https://bl.ocks.org/mbostock/4136647
+const width = 900;
 const height = 500;
-const width = 800;
 const svg = d3.select('svg')
-  .attr("viewBox", "90 0 " + width + " " + height)
+  .attr("viewBox", "0 0 " + width + " " + height)
 const circleDelay = 1
 const circleSize = 3
 
