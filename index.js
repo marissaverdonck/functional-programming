@@ -1,3 +1,7 @@
+// Wereldkaart maken, bron: https://www.youtube.com/watch?v=Qw6uAg3EO64
+// Mapprojections: https://github.com/d3/d3-geo-projection
+// Datapunten op kaart, bron: https://beta.vizhub.com/Razpudding/6b3c5d10edba4c86babf4b6bc204c5f0
+
 // SPARQL Sieraden
 const query = `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
@@ -23,16 +27,11 @@ SELECT (SAMPLE(?cho) AS ?choSample) ?place ?placeName ?type ?imageLink ?lat ?lon
 }
 GROUP BY ?place ?placeName ?type ?imageLink ?lat ?long
 `
-
 const endpoint = "https://api.data.netwerkdigitaalerfgoed.nl/datasets/ivo/NMVW/services/NMVW-28/sparql";
-const circleDelay = 2
-const circleSize = 3
 
-// Bron: https://www.youtube.com/watch?v=Qw6uAg3EO64
-// Mapprojections: https://github.com/d3/d3-geo-projection
-
-// Omdat npm d3 geinstaleerd is kan hier alles uit gehaald worden ipv import
+// Omdat npm en d3 geinstaleerd is kan hier alles uit gehaald worden ipv import
 const json = d3.json;
+// topoJson omzetten naar geoJson met de NPM package: topoJson .feature
 const feature = topojson.feature;
 // geoPath zet data om naar een svg-string
 const geoPath = d3.geoPath;
@@ -46,36 +45,47 @@ const height = 500;
 const width = 800;
 const svg = d3.select('svg')
   .attr("viewBox", "90 0 " + width + " " + height)
-  .attr("width", width)
-  .attr("height", height);
+const circleDelay = 2
+const circleSize = 3
 
-
-//function setupMap(){}
-svg
-  .append('path')
-  .attr('class', 'sphere')
-  .attr('d', pathGenerator({ type: 'Sphere' }));
-
-// Laad de kaart uit de url in json
-// Haal daarna de data op
-// topoJson omzetten naar geoJson met de NPM package: topoJson .feature
-json('https://unpkg.com/world-atlas@1.1.4/world/110m.json')
-  .then(data => {
-    const countries = feature(data, data.objects.countries);
-
-    // dataJoin opzetten
-    const paths = svg
-      .selectAll('path')
-      .data(countries.features)
-      .enter()
-      .append('path')
-      .attr('class', 'country')
-      .attr('d', d => pathGenerator(d));
-  });
-
+// Voer de functies in deze volgorde uit
+setupMap()
+drawMap()
 plotLocations()
 
+function setupMap() {
+  svg
+  // nieuw DOM-element aanmaken in svg: path
+    .append('path')
+    .attr('class', 'sphere')
+    // Het d-attribuut defineerd het pad wat getekend gaat worden
+    .attr('d', pathGenerator({ type: 'Sphere' }));
+}
+
+function drawMap() {
+  // Laad de kaartpunten uit de json url
+  json('https://unpkg.com/world-atlas@1.1.4/world/110m.json')
+    .then(data => {
+      // Haal daarna de data op uit json, object: countries
+      // feature: topoJson omzetten naar geoJson met de NPM package: topoJson .feature
+      const countries = feature(data, data.objects.countries);
+      // dataJoin opzetten (data en html connecten)
+      const paths = svg
+        // Er zijn data-elementen maar geen html-elementen. Daarom selecteer je alles
+        .selectAll('path')
+        // Geef met .data(data) een array met data aan
+        .data(countries.features)
+        .enter()
+        .append('path')
+        // Geef voor elk path een class country mee
+        .attr('class', 'country')
+        // Het d-attribuut defineerd het pad wat getekend gaat worden
+        .attr('d', d => pathGenerator(d));
+    });
+}
+
 function plotLocations() {
+  // Pak het endpoint en de query van de data uit SPARQL
   fetch(endpoint + "?query=" + encodeURIComponent(query) + "&format=json")
     .then(data => data.json())
     .then(json => json.results.bindings)
