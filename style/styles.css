@@ -46,7 +46,7 @@ h1 {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  margin: 0em .5em 0em .5em;
+  margin: 0em .5em 0em 0em;
 }
 
 #buttons {
