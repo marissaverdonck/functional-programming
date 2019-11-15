@@ -45,8 +45,19 @@ Data wordt opgehaald uit de [collectie wereldculturen](https://collectie.wereldc
 
 • SPARQL
 
+## Credits
+
+• Curran Kelleher - making a World Map. Bron: https://www.youtube.com/watch?v=Qw6uAg3EO64
+
+• D3 Geo Map Projections - Bron: https://github.com/d3/d3-geo-projection
+
+• Razpudding - Datapunten op kaart. Bron: https://beta.vizhub.com/Razpudding/6b3c5d10edba4c86babf4b6bc204c5f0
+
 ## License
 [MIT License](https://github.com/marissaverdonck/functional-programming/blob/master/license)
+
+## *Extra opdracht
+[Data opschonen](https://github.com/marissaverdonck/functional-programming/wiki/Week-1#extra-opdracht-data-opschonen)
 
 
 
